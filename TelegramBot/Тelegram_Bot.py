@@ -7,6 +7,8 @@ bot = telebot.TeleBot('8475840146:AAFV6jH14M1Bma-gPT0PoXpULRw-KF8AgKc')
 def hello(message):
     if message.text.lower() == 'привет':
         start(message)
+    elif message.text.lower() == 'id':
+        bot.reply_to(message,message.from_user.id)
 
 
 
