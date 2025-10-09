@@ -3,6 +3,12 @@ from telebot import types
 bot = telebot.TeleBot('8475840146:AAFV6jH14M1Bma-gPT0PoXpULRw-KF8AgKc')
 
 
+@bot.message_handler(func=lambda message: message.text == 'Алгебра')
+def algebra(message):
+    books(message)
+
+
+
 @bot.message_handler(content_types=['photo'])
 def get_photo(message):
     bot.reply_to(message, 'good photo')
@@ -24,6 +30,8 @@ def books(message):
     markup = types.InlineKeyboardMarkup()
     markup.add(types.InlineKeyboardButton('Алгебра', callback_data='Algebra'))
     bot.send_message(message.chat.id, 'Вот книги👇', reply_markup=markup)
+
+
 
 @bot.callback_query_handler(lambda callback: True)
 def callback_message(callback):
