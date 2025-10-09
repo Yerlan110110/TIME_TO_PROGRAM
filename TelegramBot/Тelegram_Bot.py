@@ -19,6 +19,18 @@ def hp(message):
     bot.send_message(message.chat.id,'<b><u>/start</u> - начать</b>',parse_mode='html')
 
 
+@bot.message_handler(commands =['books'])
+def books(message):
+    markup = types.InlineKeyboardMarkup()
+    markup.add(types.InlineKeyboardButton('Алгебра', callback_data='Algebra'))
+    bot.send_message(message.chat.id, 'Вот книги👇', reply_markup=markup)
+
+@bot.callback_query_handler(lambda callback: True)
+def callback_message(callback):
+    if callback.data == 'Algebra':
+            with open('Algebra.pdf','rb') as file:
+                bot.send_document(callback.message.chat.id, file)
+
 @bot.message_handler(commands =['site','website'])
 def site(message):
     markup = types.InlineKeyboardMarkup()
@@ -26,7 +38,7 @@ def site(message):
     markup.add(types.InlineKeyboardButton('Открыть сайт',url = url))
     bot.send_message(message.chat.id, 'Вот сайт👇',reply_markup=markup)
 
-bot.message_handler()
+@bot.message_handler()
 def hello(message):
     if message.text.lower() == 'привет':
         start(message)
