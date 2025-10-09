@@ -11,6 +11,7 @@ def get_photo(message):
 @bot.message_handler(commands =['start'])
 def start(message):
     bot.send_message(message.chat.id,f'<b>Привет {message.from_user.first_name}!</b>',parse_mode='html')
+    bot.send_message(message.chat.id, '<a href="https://zastavki.gas-kvas.com/uploads/posts/2024-09/zastavki-gas-kvas-com-ypzi-p-zastavki-na-telefon-smeshnie-s-nadpisyami-1.jpg"><b>Заходи!</b></a>', parse_mode='html', disable_web_page_preview=True)
 
 
 @bot.message_handler(commands =['help'])
