@@ -83,7 +83,7 @@
 #     row = res.mappings().all()[0]
 #     print(f'сообщение : {row['msg']}')
 
-
+1    
 
 
 
