@@ -18,3 +18,33 @@ venv/
 .DS_Store
 Thumbs.db
 
+# VS Code
+.vscode/
+*.code-workspace
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Cache / Electron / Chromium
+Cache/
+Code Cache/
+GPUCache/
+Dawn*
+Crashpad/
+CachedData/
+CachedConfigurations/
+CachedProfilesData/
+Local Storage/
+Session Storage/
+Network/
+Shared Dictionary/
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
