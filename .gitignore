@@ -21,12 +21,15 @@ Thumbs.db
 # VS Code
 .vscode/
 *.code-workspace
+settings.json
 
 # Python
 __pycache__/
 *.pyc
 .venv/
 venv/
+.env/
+
 
 # Cache / Electron / Chromium
 Cache/
