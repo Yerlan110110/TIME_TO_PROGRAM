@@ -1,6 +1,6 @@
 #Ex_1
 from sqlalchemy import create_engine, text
-from  Lesson.config import settings
+from  config import settings
 sync_engine = create_engine(
     url = settings.DATABASE_URL_psycopg
 )
@@ -13,7 +13,7 @@ with sync_engine.connect() as conn:
 #Ex_2
 import asyncio
 from sqlalchemy.ext.asyncio import create_async_engine
-from Lesson.config import settings
+from config import settings
 from sqlalchemy import text
 async_engine = create_async_engine(
     url = settings.DATABASE_URL_asyncpg
@@ -29,7 +29,7 @@ asyncio.run(get_200())
 #Ex_3
 import asyncio
 from sqlalchemy.ext.asyncio import create_async_engine
-from Lesson.config import settings
+from config import settings
 from sqlalchemy import create_engine, text
 
 async_engine = create_async_engine(
