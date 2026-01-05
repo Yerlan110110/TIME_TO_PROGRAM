@@ -7,19 +7,19 @@ def create_tables():
     metadata_obj.drop_all(sync_engine)
     metadata_obj.create_all(sync_engine)
 
-def inser_data():
+def insert_data():
     with session_factory as session:
         worker_bobr = WorkersOrm(username = 'Bobr')
         worker_volk = WorkersOrm(username = 'Volk')
         session.add_all([worker_bobr,worker_volk])
-        session.commit
+        session.commit()
 
 
-async def inser_data():
-    async with session_factory as session:
+async def insert_data():
+    async with async_session_factory() as session:
             worker_bobr = WorkersOrm(username = 'Bobr')
             worker_volk = WorkersOrm(username = 'Volk')
             session.add_all([worker_bobr,worker_volk])
-            await session.commit
+            await session.commit()
 
 
