@@ -29,3 +29,4 @@ def insert_data():
         )
         conn.execute(stmt)
         conn.commit()
+        

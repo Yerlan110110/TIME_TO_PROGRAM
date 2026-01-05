@@ -1,12 +1,13 @@
 import asyncio
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+from sqlalchemy.orm import  sessionmaker , Session, DeclarativeBase
 from sqlalchemy import create_engine, text
 from config import settings
 
 
 # SYNC ENGINE 
 sync_engine = create_engine(
-    url=settings.DATABASE_URL_psycopg,
+    url=settings.DATABASE_URL_psycopg,  
     echo = True)
 
 
@@ -26,3 +27,10 @@ async def async_get123():
     async with async_engine.connect() as conn:
         res = await conn.execute(text("SELECT 1, 2, 3"))
         print("async result =", res.first())
+
+
+session_factory = sessionmaker(sync_engine)
+async_session_factory = async_sessionmaker(async_engine)
+
+class Base(DeclarativeBase):
+    pass
