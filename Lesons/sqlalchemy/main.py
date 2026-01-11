@@ -1,5 +1,10 @@
-import asyncio
-from queries.orm import create_tables, insert_data
+from database import sync_engine,Base, session_factory
+import models
+from models import User
 
-create_tables()
-asyncio.run(insert_data())
+Base.metadata.create_all(bind = sync_engine)
+
+with session_factory() as session:
+    user = User(email = 'jonh@gmail.com')
+    session.add(user)
+    session.commit()

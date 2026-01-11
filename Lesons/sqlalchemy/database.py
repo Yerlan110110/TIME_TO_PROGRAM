@@ -1,36 +1,9 @@
-import asyncio
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
-from sqlalchemy.orm import  sessionmaker , Session, DeclarativeBase
-from sqlalchemy import create_engine, text
+from sqlalchemy.orm import DeclarativeBase, sessionmaker
+from sqlalchemy import create_engine
 from config import settings
+DB_URL = f'postgresql://{settings.DB_USER}:{settings.DB_PASS}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}'
 
-
-# SYNC ENGINE 
-sync_engine = create_engine(
-    url=settings.DATABASE_URL_psycopg,  
-    echo = True)
-
-
-
-# ASYNC ENGINE
-async_engine = create_async_engine(
-    url=settings.DATABASE_URL_asyncpg)
-
-
-def sync_get_123():
-    with sync_engine.connect() as conn:
-        res = conn.execute(text("SELECT 1, 2, 3"))
-        print("sync result =", res.first())
-
-
-async def async_get123():
-    async with async_engine.connect() as conn:
-        res = await conn.execute(text("SELECT 1, 2, 3"))
-        print("async result =", res.first())
-
-
-session_factory = sessionmaker(sync_engine)
-async_session_factory = async_sessionmaker(async_engine)
-
+sync_engine = create_engine(url  = DB_URL)
+session_factory = sessionmaker(bind = sync_engine)
 class Base(DeclarativeBase):
     pass
